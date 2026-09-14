@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ហាងម្ហូបឆ្ងាញ់ - Khmer Food</title>
+    <!-- ភ្ជាប់ Tailwind CSS តាមរយៈ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font សម្រាប់អក្សរខ្មែរ -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kantumruy Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-red-600 flex items-center gap-2">
+                🍲 ហាងម្ហូបឆ្ងាញ់
+            </div>
+            
+            <nav class="hidden md:flex space-x-6 font-medium">
+                <a href="#home" class="hover:text-red-600 transition">ទំព័រដើម</a>
+                <a href="#menu" class="hover:text-red-600 transition">ម៉ឺនុយម្ហូប</a>
+                <a href="#about" class="hover:text-red-600 transition">អំពីយើង</a>
+            </nav>
+
+            <!-- ប៊ូតុងកន្ត្រកទំនិញ (Cart Button) -->
+            <button onclick="toggleCart()" class="relative bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-full font-semibold flex items-center gap-2 transition">
+                🛒 កន្ត្រកទំនិញ
+                <span id="cart-count" class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section id="home" class="relative bg-cover bg-center h-[60vh] flex items-center justify-center text-center text-white px-4" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200');">
+        <div class="max-w-2xl">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">ម្ហូបស្រស់ៗ រសជាតិឆ្ងាញ់ពិសា ដឹកជញ្ជូនទាន់ចិត្ត</h1>
+            <p class="text-gray-200 text-base md:text-lg mb-6">យើងផ្តល់ជូននូវម្ហូបអាហារដែលមានអនាម័យខ្ពស់ និងរសជាតិដើមបែបខ្មែរ។</p>
+            <a href="#menu" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition">មើលម៉ឺនុយអាហារ</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="max-w-6xl mx-auto py-12 px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">ម៉ឺនុយអាហារប្រចាំហាង</h2>
+        
+        <!-- Grid បង្ហាញម្ហូប -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Item 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500" alt="អាហារ">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">អាម៉ុកត្រី (Fish Amok)</h3>
+                    <p class="text-gray-500 text-sm mb-4">អាម៉ុកត្រីរសជាតិដើម ឈ្ងុយគ្រឿង និងខ្ទិះដូង។</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold text-red-600">$4.50</span>
+                        <button onclick="addToCart('អាម៉ុកត្រី', 4.50)" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-xl transition font-medium">+ បន្ថែមចូលកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500" alt="អាហារ">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">បាយឆាសាច់ជ្រូក (Fried Rice)</h3>
+                    <p class="text-gray-500 text-sm mb-4">បាយឆាក្តៅៗជាមួយបន្លែស្រស់ និងសាច់ជ្រូកបំពង។</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold text-red-600">$3.00</span>
+                        <button onclick="addToCart('បាយឆាសាច់ជ្រូក', 3.00)" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-xl transition font-medium">+ បន្ថែមចូលកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500" alt="អាហារ">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">មីឆាសាច់គោ (Fried Noodles)</h3>
+                    <p class="text-gray-500 text-sm mb-4">មីឆាក្តៅៗលាយជាមួយសាច់គោ និងពងទាពពុះ។</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold text-red-600">$3.50</span>
+                        <button onclick="addToCart('មីឆាសាច់គោ', 3.50)" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-xl transition font-medium">+ បន្ថែមចូលកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" alt="អាហារ">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">សាឡាត់បន្លែស្រស់ (Fresh Salad)</h3>
+                    <p class="text-gray-500 text-sm mb-4">បន្លែស្រស់ៗសម្រាប់អ្នកស្រឡាញ់សុខភាព។</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold text-red-600">$2.50</span>
+                        <button onclick="addToCart('សាឡាត់បន្លែស្រស់', 2.50)" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-xl transition font-medium">+ បន្ថែមចូលកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Slide-over Cart Sidebar (កន្ត្រកទំនិញ) -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="p-4 bg-red-600 text-white flex justify-between items-center">
+            <h3 class="text-lg font-bold">កន្ត្រកទំនិញរបស់អ្នក</h3>
+            <button onclick="toggleCart()" class="text-white hover:text-gray-200 text-2xl font-bold">&times;</button>
+        </div>
+        
+        <!-- បញ្ជីទំនិញក្នុងកន្ត្រក -->
+        <div id="cart-items" class="p-4 flex-1 overflow-y-auto space-y-4">
+            <p class="text-gray-500 text-center py-8">គ្មានទំនិញក្នុងកន្ត្រកនៅឡើយទេ</p>
+        </div>
+
+        <!-- សរុបប្រាក់ និងប៊ូតុងទូទាត់ -->
+        <div class="p-4 border-t border-gray-100 bg-gray-50">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-bold text-gray-700">តម្លៃសរុប៖</span>
+                <span id="cart-total" class="text-xl font-bold text-red-600">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-bold shadow-md transition">ទូទាត់ប្រាក់</button>
+        </div>
+    </div>
+
+    <!-- Backdrop overlay -->
+    <div id="backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+
+    <!-- Footer -->
+    <footer id="about" class="bg-gray-900 text-gray-400 py-8 px-4 text-center text-sm">
+        <p class="mb-2">ទូរស័ព្ទ៖ 012 345 678 | ទីតាំង៖ រាជធានីភ្នំពេញ</p>
+        <p>&copy; 2026 Khmer Food Restaurant. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+    </footer>
+
+    <!-- JavaScript សម្រាប់គ្រប់គ្រងកន្ត្រកទំនិញ (Cart System) -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const backdrop = document.getElementById('backdrop');
+            sidebar.classList.toggle('translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+
+            // គណនាចំនួនសរុប និងតម្លៃសរុប
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center py-8">គ្មានទំនិញក្នុងកន្ត្រកនៅឡើយទេ</p>';
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    totalItems += item.quantity;
+                    totalPrice += item.price * item.quantity;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100';
+                    itemElement.innerHTML = `
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-800">${item.name}</h4>
+                            <p class="text-xs text-gray-500">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-sm text-red-600">$${(item.price * item.quantity).toFixed(2)}</span>
+                            <button onclick="removeFromCart('${item.name}')" class="text-red-500 hover:text-red-700 text-xs font-bold">លុប</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.innerText = totalItems;
+            cartTotal.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('សូមបន្ថែមម្ហូបចូលក្នុងកន្ត្រកជាមុនសិន!');
+            } else {
+                alert('ការកុម្ម៉ង់របស់អ្នកទទួលបានជោគជ័យ! យើងខ្ញុំនឹងទាក់ទងទៅក្នុងពេលឆាប់ៗ។');
+                cart = [];
+                updateCartUI();
+                toggleCart();
+            }
+        }
+    </script>
+</body>
+</html>
